@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import EmployeeCard from '../common/EmployeeCard';
 import { Employee } from '../../types/employee';
 import './EmployeesPage.css';
@@ -38,19 +39,36 @@ const mockEmployees: Employee[] = [
 ];
 
 const EmployeesPage: React.FC = () => {
-  // useState - хук для состояния
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [filter, setFilter] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
+  const [isCheckingAuth, setIsCheckingAuth] = useState<boolean>(true);
 
-  // useEffect - хук для побочных эффектов (аналог componentDidMount)
+  // Проверка авторизации при загрузке компонента
   useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem('auth_token');
+      if (!token) {
+        navigate('/login');
+      } else {
+        setIsCheckingAuth(false);
+      }
+    };
+
+    checkAuth();
+  }, [navigate]);
+
+  // Загрузка данных сотрудников
+  useEffect(() => {
+    if (isCheckingAuth) return; // Ждем проверки авторизации
+
     // Имитация загрузки данных
     setTimeout(() => {
       setEmployees(mockEmployees);
       setLoading(false);
     }, 1000);
-  }, []); // Пустой массив зависимостей = запустить один раз при монтировании
+  }, [isCheckingAuth]); // Зависимость от isCheckingAuth
 
   // Функция для фильтрации сотрудников
   const filteredEmployees = employees.filter(employee =>
@@ -60,8 +78,8 @@ const EmployeesPage: React.FC = () => {
 
   // Функция для обработки выбора сотрудника
   const handleSelectEmployee = (id: number) => {
-    alert(`Выбран сотрудник с ID: ${id}`);
-    // В будущем здесь будет навигация на страницу сотрудника
+    // Используем navigate для перехода на страницу сотрудника
+    navigate(`/employee/${id}`);
   };
 
   // Функция для расчета средней продуктивности
@@ -71,12 +89,22 @@ const EmployeesPage: React.FC = () => {
     return Math.round(total / employees.length);
   };
 
-  // Показываем загрузку
+  // Проверка авторизации
+  if (isCheckingAuth) {
+    return (
+      <div className="auth-checking">
+        <div className="loading-spinner"></div>
+        <p>Проверка доступа...</p>
+      </div>
+    );
+  }
+
+  // Показываем загрузку данных
   if (loading) {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <p>Загрузка данных...</p>
+        <p>Загрузка данных сотрудников...</p>
       </div>
     );
   }
@@ -121,6 +149,9 @@ const EmployeesPage: React.FC = () => {
         {filteredEmployees.length === 0 ? (
           <div className="no-results">
             <p>Сотрудники не найдены</p>
+            <button onClick={() => setFilter('')} className="clear-filter-button">
+              Сбросить фильтр
+            </button>
           </div>
         ) : (
           filteredEmployees.map(employee => (
@@ -135,6 +166,12 @@ const EmployeesPage: React.FC = () => {
       
       <div className="page-footer">
         <p>Показано: {filteredEmployees.length} из {employees.length} сотрудников</p>
+        <button 
+          onClick={() => navigate('/')}
+          className="back-to-dashboard"
+        >
+          ← Назад к панели управления
+        </button>
       </div>
     </div>
   );
