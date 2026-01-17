@@ -1,0 +1,273 @@
+.employee-stats {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.stats-header h3 {
+  margin: 0;
+  color: #262626;
+  font-size: 18px;
+}
+
+.stats-date {
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.productivity-section {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h4 {
+  margin: 0;
+  color: #262626;
+  font-size: 16px;
+}
+
+.score-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.productivity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.productivity-bar-container {
+  position: relative;
+  height: 40px;
+  background: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.productivity-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 20px;
+  transition: width 1s ease-in-out;
+}
+
+.productivity-labels {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 12px;
+  color: #8c8c8c;
+  z-index: 1;
+}
+
+.current-productivity {
+  font-weight: 600;
+  color: #262626;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.productivity-description {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.productivity-description p {
+  margin: 0 0 8px 0;
+  color: #262626;
+  font-size: 14px;
+}
+
+.productivity-description p:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation {
+  color: #595959 !important;
+  font-size: 13px !important;
+  line-height: 1.5;
+}
+
+.applications-section h4 {
+  margin: 0 0 20px 0;
+  color: #262626;
+  font-size: 16px;
+}
+
+.applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.application-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.application-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.application-info {
+  flex: 1;
+}
+
+.application-name {
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 2px;
+}
+
+.application-duration {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.application-progress {
+  width: 100px;
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #1890ff, #40a9ff);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+@media (max-width: 768px) {
+  .employee-stats {
+    padding: 16px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .productivity-labels {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .current-productivity {
+    order: -1;
+  }
+  
+  .application-item {
+    flex-wrap: wrap;
+  }
+  
+  .application-progress {
+    width: 100%;
+  }
+}

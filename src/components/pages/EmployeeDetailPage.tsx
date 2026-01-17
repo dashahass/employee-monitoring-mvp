@@ -1,208 +1,205 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Employee } from '../../types/employee';
+import Loading from '../common/Loading';
+import EmployeeHeader from '../employee/EmployeeHeader';
+import EmployeeStats from '../employee/EmployeeStats';
+import EmployeeActivity from '../employee/EmployeeActivity';
+import { employeeService } from '../../services/employeeService';
+import { Employee, EmployeeActivity as ActivityType, EmployeeStats as StatsType } from '../../types/employee';
 import './EmployeeDetailPage.css';
-
-// Мок-данные для сотрудника
-const mockEmployeeData: Employee = {
-  id: 1,
-  name: 'Иван Петров',
-  email: 'ivan@company.com',
-  department: 'Разработка',
-  position: 'Frontend разработчик',
-  productivity: 85,
-  isActive: true,
-  lastActivity: new Date()
-};
-
-// Мок-данные для активности
-const mockActivities = [
-  { time: '09:00', activity: 'Работа с React кодом', type: 'productive', duration: '60 мин' },
-  { time: '10:00', activity: 'Совещание по проекту', type: 'productive', duration: '45 мин' },
-  { time: '11:00', activity: 'Просмотр YouTube', type: 'distracting', duration: '15 мин' },
-  { time: '11:15', activity: 'Работа с API', type: 'productive', duration: '75 мин' },
-  { time: '12:30', activity: 'Обеденный перерыв', type: 'break', duration: '45 мин' },
-  { time: '13:15', activity: 'Code review', type: 'productive', duration: '60 мин' },
-  { time: '14:15', activity: 'Работа с документацией', type: 'productive', duration: '45 мин' },
-];
 
 const EmployeeDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [employee, setEmployee] = useState<Employee | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [activities, setActivities] = useState<ActivityType[]>([]);
+  const [stats, setStats] = useState<StatsType | null>(null);
 
   useEffect(() => {
-    // Проверяем авторизацию
-    const token = localStorage.getItem('auth_token');
-    if (!token) {
-      navigate('/login');
-      return;
+    if (id) {
+      loadEmployeeData(parseInt(id));
     }
+  }, [id]);
 
-    // Имитация загрузки данных
-    setTimeout(() => {
-      setEmployee(mockEmployeeData);
-      setLoading(false);
-    }, 1000);
-  }, [id, navigate]);
+  const loadEmployeeData = async (employeeId: number) => {
+    setIsLoading(true);
+    try {
+      const [employeeData, activitiesData, statsData] = await Promise.all([
+        employeeService.getEmployeeById(employeeId),
+        employeeService.getEmployeeActivities(employeeId),
+        employeeService.getEmployeeStats(employeeId)
+      ]);
+      
+      if (employeeData) {
+        setEmployee(employeeData);
+      }
+      setActivities(activitiesData);
+      setStats(statsData);
+    } catch (error) {
+      console.error('Error loading employee data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  const handleGoBack = () => {
+  const handleBack = () => {
     navigate('/employees');
   };
 
-  const getActivityTypeColor = (type: string) => {
-    switch (type) {
-      case 'productive': return '#52c41a';
-      case 'distracting': return '#ff4d4f';
-      case 'break': return '#faad14';
-      default: return '#8c8c8c';
+  const handleStatusChange = async (newStatus: Employee['status']) => {
+    if (!employee) return;
+    
+    try {
+      const success = await employeeService.updateEmployeeStatus(employee.id, newStatus);
+      if (success) {
+        setEmployee({
+          ...employee,
+          status: newStatus,
+          lastActivity: new Date()
+        });
+      }
+    } catch (error) {
+      console.error('Error updating employee status:', error);
     }
   };
 
-  const getActivityTypeLabel = (type: string) => {
-    switch (type) {
-      case 'productive': return 'Продуктивная';
-      case 'distracting': return 'Отвлечение';
-      case 'break': return 'Перерыв';
-      default: return type;
-    }
-  };
-
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Загрузка данных сотрудника...</p>
+      <div className="employee-detail-loading">
+        <Loading text="Загрузка данных сотрудника..." size="large" />
       </div>
     );
   }
 
   if (!employee) {
     return (
-      <div className="error-container">
-        <h2>Сотрудник не найден</h2>
-        <p>Сотрудник с ID {id} не существует или был удален.</p>
-        <button onClick={handleGoBack} className="back-button">
-          ← Вернуться к списку сотрудников
-        </button>
+      <div className="employee-not-found">
+        <div className="not-found-content">
+          <h2>Сотрудник не найден</h2>
+          <p>Запрашиваемый сотрудник не существует или был удален.</p>
+          <button onClick={handleBack} className="back-button">
+            Вернуться к списку сотрудников
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="employee-detail">
-      <div className="detail-header">
-        <button onClick={handleGoBack} className="back-link">
-          ← Назад к списку
-        </button>
-        <h2>Детальная информация о сотруднике</h2>
-      </div>
+    <div className="employee-detail-page">
+      <EmployeeHeader
+        employee={employee}
+        onBack={handleBack}
+        onStatusChange={handleStatusChange}
+      />
 
-      <div className="employee-profile">
-        <div className="profile-header">
-          <div className="profile-avatar">
-            {employee.name.charAt(0)}
-          </div>
-          <div className="profile-info">
-            <h1>{employee.name}</h1>
-            <div className="profile-meta">
-              <span className="position">{employee.position}</span>
-              <span className="department">{employee.department}</span>
-              <span className="email">{employee.email}</span>
+      <div className="detail-content">
+        <div className="content-left">
+          {stats && (
+            <div className="section">
+              <EmployeeStats stats={stats} />
             </div>
-          </div>
-          <div className="profile-stats">
-            <div className="productivity-score">
-              <div className="score-circle" style={{ 
-                borderColor: employee.productivity >= 80 ? '#52c41a' : 
-                            employee.productivity >= 60 ? '#faad14' : '#ff4d4f'
-              }}>
-                {employee.productivity}%
+          )}
+          
+          <div className="section">
+            <div className="section-header">
+              <h3>Общая информация</h3>
+            </div>
+            <div className="info-grid">
+              <div className="info-item">
+                <span className="info-label">ID сотрудника:</span>
+                <span className="info-value">{employee.id}</span>
               </div>
-              <span>Продуктивность</span>
-            </div>
-            <div className="status-indicator">
-              <div className={`status-dot ${employee.isActive ? 'active' : 'inactive'}`} />
-              <span>{employee.isActive ? 'В сети' : 'Неактивен'}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="stats-overview">
-          <div className="stat-card">
-            <h3>Общее время работы</h3>
-            <p className="stat-value">7ч 45м</p>
-            <p className="stat-label">сегодня</p>
-          </div>
-          <div className="stat-card">
-            <h3>Продуктивное время</h3>
-            <p className="stat-value">6ч 30м</p>
-            <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${(6.5 / 7.75 * 100).toFixed(0)}%` }}
-              />
-            </div>
-          </div>
-          <div className="stat-card">
-            <h3>Кол-во отвлечений</h3>
-            <p className="stat-value">3</p>
-            <p className="stat-label">за сегодня</p>
-          </div>
-          <div className="stat-card">
-            <h3>Время простоя</h3>
-            <p className="stat-value">45м</p>
-            <p className="stat-change">+5м вчера</p>
-          </div>
-        </div>
-
-        <div className="activity-section">
-          <div className="section-header">
-            <h3>Активность за сегодня</h3>
-            <div className="date-selector">
-              <input
-                type="date"
-                value={selectedDate.toISOString().split('T')[0]}
-                onChange={(e) => setSelectedDate(new Date(e.target.value))}
-              />
-            </div>
-          </div>
-
-          <div className="activity-timeline">
-            {mockActivities.map((activity, index) => (
-              <div key={index} className="activity-item">
-                <div className="activity-time">{activity.time}</div>
-                <div className="activity-content">
-                  <div className="activity-header">
-                    <span className="activity-text">{activity.activity}</span>
-                    <span 
-                      className="activity-type"
-                      style={{ backgroundColor: getActivityTypeColor(activity.type) }}
-                    >
-                      {getActivityTypeLabel(activity.type)}
-                    </span>
-                  </div>
-                  <div className="activity-duration">
-                    <span>Длительность: {activity.duration}</span>
+              <div className="info-item">
+                <span className="info-label">Статус:</span>
+                <span className="info-value status-badge">
+                  <span 
+                    className="status-dot" 
+                    style={{ 
+                      backgroundColor: employee.status === 'online' ? '#52c41a' :
+                                     employee.status === 'away' ? '#faad14' :
+                                     employee.status === 'busy' ? '#f5222d' : '#8c8c8c'
+                    }}
+                  />
+                  {employee.status === 'online' ? 'В сети' :
+                   employee.status === 'away' ? 'Отошел' :
+                   employee.status === 'busy' ? 'Занят' : 'Не в сети'}
+                </span>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Продуктивность:</span>
+                <div className="info-value">
+                  <div className="productivity-indicator">
+                    <div 
+                      className="productivity-fill"
+                      style={{ width: `${employee.productivity}%` }}
+                    />
+                    <span className="productivity-text">{employee.productivity}%</span>
                   </div>
                 </div>
               </div>
-            ))}
+              <div className="info-item">
+                <span className="info-label">Активность:</span>
+                <span className="info-value">
+                  {employee.isActive ? 'Активен' : 'Неактивен'}
+                </span>
+              </div>
+              {employee.hireDate && (
+                <div className="info-item">
+                  <span className="info-label">В компании:</span>
+                  <span className="info-value">
+                    {Math.floor((new Date().getTime() - new Date(employee.hireDate).getTime()) / (1000 * 60 * 60 * 24 * 30.44))} мес.
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        <div className="action-buttons">
-          <button className="action-button primary">
-            📊 Сформировать отчет
-          </button>
-          <button className="action-button secondary">
-            ⚠️ Отправить предупреждение
-          </button>
-          <button className="action-button">
-            📝 Редактировать профиль
-          </button>
+        <div className="content-right">
+          <div className="section">
+            <EmployeeActivity activities={activities} />
+          </div>
+
+          <div className="section">
+            <div className="section-header">
+              <h3>Быстрые действия</h3>
+            </div>
+            <div className="quick-actions">
+              <button className="action-button">
+                <div className="action-icon">📊</div>
+                <div className="action-content">
+                  <h4>Создать отчет</h4>
+                  <p>Сформировать отчет по сотруднику</p>
+                </div>
+              </button>
+              
+              <button className="action-button">
+                <div className="action-icon">📧</div>
+                <div className="action-content">
+                  <h4>Отправить уведомление</h4>
+                  <p>Написать сообщение сотруднику</p>
+                </div>
+              </button>
+              
+              <button className="action-button">
+                <div className="action-icon">⚙️</div>
+                <div className="action-content">
+                  <h4>Настройки доступа</h4>
+                  <p>Управление правами доступа</p>
+                </div>
+              </button>
+              
+              <button className="action-button">
+                <div className="action-icon">📈</div>
+                <div className="action-content">
+                  <h4>Аналитика продуктивности</h4>
+                  <p>Подробная аналитика работы</p>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

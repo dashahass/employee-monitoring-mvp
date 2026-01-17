@@ -1,0 +1,248 @@
+.employee-header {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: #1890ff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button:hover {
+  background: #e6f7ff;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-button {
+  padding: 8px 16px;
+  border: 1px solid #d9d9d9;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-button:hover {
+  border-color: #1890ff;
+  color: #1890ff;
+}
+
+.action-button.primary {
+  background: #1890ff;
+  color: white;
+  border-color: #1890ff;
+}
+
+.action-button.primary:hover {
+  background: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.employee-main-info {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.employee-avatar-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.status-indicator-large {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.employee-details {
+  flex: 1;
+}
+
+.name-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.name-section h1 {
+  margin: 0;
+  color: #262626;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.status-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.current-status {
+  font-size: 14px;
+  color: #595959;
+}
+
+.current-status strong {
+  color: #262626;
+}
+
+.status-select {
+  padding: 6px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: #1890ff;
+}
+
+.position-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.position-section h2 {
+  margin: 0;
+  color: #595959;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.department-tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  font-size: 12px;
+  color: #8c8c8c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-value {
+  font-size: 14px;
+  color: #262626;
+  text-decoration: none;
+}
+
+.contact-value[href]:hover {
+  color: #1890ff;
+}
+
+@media (max-width: 768px) {
+  .employee-header {
+    padding: 16px;
+  }
+  
+  .header-top {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .header-actions {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .employee-main-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .employee-avatar-large {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+  
+  .name-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .status-selector {
+    align-items: flex-start;
+  }
+  
+  .position-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+}
