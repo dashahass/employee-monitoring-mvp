@@ -1,50 +1,99 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# 🖥️ Система мониторинга активности сотрудников
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-18.2-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-success)
 
-## Available Scripts
+Полнофункциональный фронтенд для системы мониторинга активности сотрудников с использованием искусственного интеллекта.
 
-In the project directory, you can run:
+## 🚀 Демо
 
-### `npm start`
+Приложение доступно по адресу: [https://dashahass.github.io/employee-monitoring-mvp](https://dashahass.github.io/employee-monitoring-mvp)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Тестовые пользователи:**
+- Администратор: `admin` / `admin123`
+- Менеджер: `manager` / `manager123`
+- Пользователь: `user` / `user123`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📋 Функционал
 
-### `npm test`
+### 🔐 Авторизация и безопасность
+- Ролевая модель (Администратор, Менеджер, Пользователь)
+- Защищенные маршруты
+- Сохранение сессии
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📊 Дашборд
+- Общая статистика продуктивности
+- Графики активности
+- Последние события
+- Быстрый доступ к основным функциям
 
-### `npm run build`
+### 👥 Управление сотрудниками
+- Список всех сотрудников
+- Детальная информация по каждому сотруднику
+- Фильтрация и поиск
+- История активности
+- Просмотр скриншотов
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📈 Отчеты
+- Создание отчетов (ежедневных, недельных, месячных)
+- Гибкая система фильтрации
+- Шаблоны отчетов
+- Экспорт отчетов
+- История отчетов
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ⚙️ Настройки системы
+- Общие настройки
+- Политики безопасности
+- Запрещенные приложения и сайты
+- Настройки уведомлений
+- Интеграции (Slack, Email, Active Directory)
+- Конфиденциальность данных
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Технологии
 
-### `npm run eject`
+- **React 18** с TypeScript
+- **React Router v6** для навигации
+- **Chart.js** для графиков
+- **Context API** для управления состоянием
+- **CSS Modules** для стилизации
+- **GitHub Pages** для хостинга
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🏗️ Архитектура
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+src/
+├── components/ # React компоненты
+│ ├── common/ # Общие компоненты
+│ ├── layout/ # Компоненты макета
+│ ├── pages/ # Страницы приложения
+│ ├── charts/ # Компоненты графиков
+│ ├── reports/ # Компоненты отчетов
+│ └── settings/ # Компоненты настроек
+├── context/ # React контексты
+├── hooks/ # Кастомные хуки
+├── services/ # Сервисы для работы с данными
+├── types/ # TypeScript типы
+├── utils/ # Вспомогательные функции
+└── styles/ # Глобальные стили
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🚀 Локальный запуск
 
-## Learn More
+### Предварительные требования
+- Node.js 16+ 
+- npm или yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Установка
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-=======
-# employee-monitoring-mvp
->>>>>>> 68b2815917d90b35a93bce0279d496fa6dcbc662
+```bash
+# Клонирование репозитория
+git clone https://github.com/dashahass/employee-monitoring-mvp.git
+cd employee-monitoring-mvp
+
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
+npm start
+
+Приложение будет доступно по адресу: http://localhost:3000
