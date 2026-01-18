@@ -1,22 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage';
+import MainLayout from './components/layout/MainLayout';
 import DashboardPage from './components/pages/DashboardPage';
 import EmployeesPage from './components/pages/EmployeesPage';
 import EmployeeDetailPage from './components/pages/EmployeeDetailPage';
+import ReportsPage from './components/pages/ReportsPage';
+import ReportDetailPage from './components/pages/ReportDetailPage';
+import CreateReportPage from './components/pages/CreateReportPage';
 import NotFoundPage from './components/pages/NotFoundPage';
-import MainLayout from './components/layout/MainLayout';
-import ProtectedRoute from './components/common/ProtectedRoute';
 import './App.css';
+
+// Простой компонент для проверки авторизации
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const isAuthenticated = localStorage.getItem('auth_token') !== null;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+};
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Публичный маршрут */}
         <Route path="/login" element={<LoginPage />} />
         
-        {/* Защищенные маршруты */}
         <Route path="/" element={
           <ProtectedRoute>
             <MainLayout>
@@ -33,9 +42,8 @@ function App() {
           </ProtectedRoute>
         } />
         
-        {/* Маршруты с проверкой ролей */}
         <Route path="/employees" element={
-          <ProtectedRoute requiredRole={['admin', 'manager', 'viewer']}>
+          <ProtectedRoute>
             <MainLayout>
               <EmployeesPage />
             </MainLayout>
@@ -43,25 +51,37 @@ function App() {
         } />
         
         <Route path="/employee/:id" element={
-          <ProtectedRoute requiredRole={['admin', 'manager', 'viewer']}>
+          <ProtectedRoute>
             <MainLayout>
               <EmployeeDetailPage />
             </MainLayout>
           </ProtectedRoute>
         } />
         
-        <Route path="/admin" element={
-          <ProtectedRoute requiredRole="admin">
+        <Route path="/reports" element={
+          <ProtectedRoute>
             <MainLayout>
-              <div className="admin-panel">
-                <h2>Админ панель</h2>
-                <p>Только для администраторов</p>
-              </div>
+              <ReportsPage />
             </MainLayout>
           </ProtectedRoute>
         } />
         
-        {/* Маршрут 404 */}
+        <Route path="/reports/new" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <CreateReportPage />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/reports/:id" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <ReportDetailPage />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
         <Route path="*" element={
           <ProtectedRoute>
             <MainLayout>

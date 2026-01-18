@@ -1,0 +1,363 @@
+.report-filters {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filters-header h3 {
+  margin: 0;
+  color: #262626;
+  font-size: 18px;
+}
+
+.toggle-advanced-btn {
+  background: transparent;
+  border: 1px solid #1890ff;
+  color: #1890ff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.toggle-advanced-btn:hover {
+  background: #1890ff;
+  color: white;
+}
+
+.date-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.date-quick-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.date-quick-btn {
+  padding: 8px 16px;
+  border: 1px solid #e8e8e8;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.date-quick-btn:hover {
+  border-color: #1890ff;
+  color: #1890ff;
+}
+
+.date-range {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.date-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.date-input-group label {
+  font-size: 13px;
+  color: #595959;
+  font-weight: 500;
+}
+
+.date-input {
+  padding: 10px 12px;
+  border: 2px solid #e8e8e8;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s;
+  background: #fafafa;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #1890ff;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+}
+
+.advanced-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-title {
+  margin: 0;
+  color: #595959;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.department-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.department-filter {
+  padding: 8px 12px;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.department-filter:hover {
+  border-color: #1890ff;
+  color: #1890ff;
+}
+
+.department-filter.active {
+  background: #1890ff;
+  color: white;
+  border-color: #1890ff;
+}
+
+.no-departments {
+  color: #8c8c8c;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.productivity-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.range-input {
+  position: relative;
+  padding: 20px 0;
+}
+
+.range-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none; /* Добавлено свойство appearance для совместимости */
+  background: #f0f0f0;
+  border-radius: 3px;
+  outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; /* Добавлено свойство appearance для совместимости */
+  width: 20px;
+  height: 20px;
+  background: #1890ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #1890ff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #8c8c8c;
+}
+
+.current-threshold {
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.threshold-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #595959;
+}
+
+.threshold-value {
+  background: #e6f7ff;
+  color: #1890ff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.additional-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #262626;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d9d9d9;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background: #1890ff;
+  border-color: #1890ff;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.active-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #8c8c8c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+}
+
+.filter-value {
+  font-size: 13px;
+  color: #262626;
+  font-weight: 500;
+}
+
+.date-range-display,
+.departments-display,
+.productivity-display,
+.inactive-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.departments-display .filter-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.departments-display .filter-value {
+  background: #e6f7ff;
+  color: #1890ff;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.filters-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.clear-filters-btn {
+  background: transparent;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.clear-filters-btn:hover {
+  background: #ff4d4f;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .report-filters {
+    padding: 16px;
+  }
+  
+  .filters-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .date-range {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .active-filters > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

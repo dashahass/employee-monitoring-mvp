@@ -1,0 +1,55 @@
+.report-detail-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.report-detail-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.report-not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  text-align: center;
+}
+
+.not-found-content {
+  max-width: 400px;
+}
+
+.not-found-content h2 {
+  color: #262626;
+  margin-bottom: 16px;
+}
+
+.not-found-content p {
+  color: #595959;
+  margin-bottom: 24px;
+}
+
+.back-button {
+  background: #1890ff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background: #40a9ff;
+}
+
+@media (max-width: 768px) {
+  .report-detail-page {
+    padding: 16px;
+  }
+}
