@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/employee-monitoring-mvp/static/css/main.fce9b93a.css",
+    "main.js": "/employee-monitoring-mvp/static/js/main.f36ba6a1.js",
+    "static/css/417.4f897632.chunk.css": "/employee-monitoring-mvp/static/css/417.4f897632.chunk.css",
+    "static/js/417.90ac774a.chunk.js": "/employee-monitoring-mvp/static/js/417.90ac774a.chunk.js",
+    "static/css/233.422679ee.chunk.css": "/employee-monitoring-mvp/static/css/233.422679ee.chunk.css",
+    "static/js/233.5ecb101a.chunk.js": "/employee-monitoring-mvp/static/js/233.5ecb101a.chunk.js",
+    "static/css/309.5230eaa3.chunk.css": "/employee-monitoring-mvp/static/css/309.5230eaa3.chunk.css",
+    "static/js/309.acc04cc5.chunk.js": "/employee-monitoring-mvp/static/js/309.acc04cc5.chunk.js",
+    "static/css/65.35b1210b.chunk.css": "/employee-monitoring-mvp/static/css/65.35b1210b.chunk.css",
+    "static/js/65.aa66f6cf.chunk.js": "/employee-monitoring-mvp/static/js/65.aa66f6cf.chunk.js",
+    "static/css/763.01562271.chunk.css": "/employee-monitoring-mvp/static/css/763.01562271.chunk.css",
+    "static/js/763.9c0d892d.chunk.js": "/employee-monitoring-mvp/static/js/763.9c0d892d.chunk.js",
+    "static/css/948.e3e92ee5.chunk.css": "/employee-monitoring-mvp/static/css/948.e3e92ee5.chunk.css",
+    "static/js/948.7ab940e4.chunk.js": "/employee-monitoring-mvp/static/js/948.7ab940e4.chunk.js",
+    "static/css/660.fc529d43.chunk.css": "/employee-monitoring-mvp/static/css/660.fc529d43.chunk.css",
+    "static/js/660.bf2abcd1.chunk.js": "/employee-monitoring-mvp/static/js/660.bf2abcd1.chunk.js",
+    "static/css/986.ef406188.chunk.css": "/employee-monitoring-mvp/static/css/986.ef406188.chunk.css",
+    "static/js/986.d1be4d4e.chunk.js": "/employee-monitoring-mvp/static/js/986.d1be4d4e.chunk.js",
+    "static/css/659.399ec8b9.chunk.css": "/employee-monitoring-mvp/static/css/659.399ec8b9.chunk.css",
+    "static/js/659.cde0d88e.chunk.js": "/employee-monitoring-mvp/static/js/659.cde0d88e.chunk.js",
+    "static/css/194.83e20e66.chunk.css": "/employee-monitoring-mvp/static/css/194.83e20e66.chunk.css",
+    "static/js/194.375f6eb7.chunk.js": "/employee-monitoring-mvp/static/js/194.375f6eb7.chunk.js",
+    "static/js/206.9d0213ab.chunk.js": "/employee-monitoring-mvp/static/js/206.9d0213ab.chunk.js",
+    "static/js/187.f777286a.chunk.js": "/employee-monitoring-mvp/static/js/187.f777286a.chunk.js",
+    "index.html": "/employee-monitoring-mvp/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.fce9b93a.css",
+    "static/js/main.f36ba6a1.js"
+  ]
+}
