@@ -337,10 +337,10 @@ const IntegrationSettings: React.FC<IntegrationSettingsProps> = ({ settings, onC
             <h5>Пример использования API:</h5>
             <pre className="api-example">
 {`GET /api/v1/employees
-Authorization: Bearer ${settings.apiKey || 'your_api_key'}
+Authorization: Bearer ${settings.apiKey || 'sk_test_dummy_dummy_dummy_dummy_12345678'}
 
 POST /api/v1/reports
-Authorization: Bearer ${settings.apiKey || 'your_api_key'}
+Authorization: Bearer ${settings.apiKey || 'sk_test_dummy_dummy_dummy_dummy_12345678'}
 Content-Type: application/json
 
 {
