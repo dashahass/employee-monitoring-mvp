@@ -116,9 +116,6 @@ const ReportsPage: React.FC = () => {
       <div className="page-header">
         <div className="header-content">
           <h1>Отчеты</h1>
-          <p className="page-subtitle">
-            Управление отчетами по продуктивности сотрудников
-          </p>
         </div>
         <div className="header-actions">
           <button 

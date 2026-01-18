@@ -163,9 +163,6 @@ const EmployeesPage: React.FC = () => {
       <div className="page-header">
         <div className="header-content">
           <h1>Сотрудники компании</h1>
-          <p className="page-subtitle">
-            Управление сотрудниками и мониторинг их активности
-          </p>
         </div>
         <div className="header-stats">
           <div className="stat-item">

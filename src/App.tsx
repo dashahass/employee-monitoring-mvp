@@ -8,6 +8,7 @@ import EmployeeDetailPage from './components/pages/EmployeeDetailPage';
 import ReportsPage from './components/pages/ReportsPage';
 import ReportDetailPage from './components/pages/ReportDetailPage';
 import CreateReportPage from './components/pages/CreateReportPage';
+import SettingsPage from './components/pages/SettingsPage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import './App.css';
 
@@ -16,6 +17,17 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const isAuthenticated = localStorage.getItem('auth_token') !== null;
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+};
+
+// Компонент для проверки роли администратора
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const user = localStorage.getItem('user');
+  const isAdmin = user ? JSON.parse(user).role === 'admin' : false;
+  
+  if (!isAdmin) {
+    return <Navigate to="/" replace />;
   }
   return <>{children}</>;
 };
@@ -79,6 +91,16 @@ function App() {
             <MainLayout>
               <ReportDetailPage />
             </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/settings" element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <MainLayout>
+                <SettingsPage />
+              </MainLayout>
+            </AdminRoute>
           </ProtectedRoute>
         } />
         

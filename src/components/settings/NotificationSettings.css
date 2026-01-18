@@ -1,0 +1,62 @@
+.notification-settings {
+  padding: 24px;
+}
+
+.notification-options,
+.type-options,
+.escalation-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.escalation-levels {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.templates-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+.templates-info p {
+  margin: 0;
+  color: #262626;
+  font-size: 14px;
+}
+
+.manage-templates-btn {
+  background: #1890ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s;
+}
+
+.manage-templates-btn:hover {
+  background: #40a9ff;
+}
+
+@media (max-width: 768px) {
+  .notification-settings {
+    padding: 16px;
+  }
+  
+  .templates-info {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}

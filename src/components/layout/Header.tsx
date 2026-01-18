@@ -1,4 +1,3 @@
-// src/components/layout/Header.tsx
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
@@ -6,9 +5,10 @@ import './Header.css';
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem('auth_token') !== null;
-  const user = localStorage.getItem('user') 
+  const user = localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user') || '{}')
     : null;
+  const isAdmin = user?.role === 'admin';
 
   const handleLogout = () => {
     localStorage.removeItem('auth_token');
@@ -31,6 +31,9 @@ const Header: React.FC = () => {
               <Link to="/" className="nav-link">Главная</Link>
               <Link to="/employees" className="nav-link">Сотрудники</Link>
               <Link to="/reports" className="nav-link">Отчеты</Link>
+              {isAdmin && (
+                <Link to="/settings" className="nav-link">Настройки</Link>
+              )}
             </nav>
             
             <div className="user-section">
