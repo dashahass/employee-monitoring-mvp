@@ -60,7 +60,7 @@ const mockSystemSettings: SystemSettings = {
       password: '********'
     },
     slackIntegration: true,
-    slackWebhook: process.env.REACT_APP_SLACK_WEBHOOK || 'dummy-webhook',
+    slackWebhook: 'https://hooks.slack.com/services/DUMMY/DUMMY/DUMMY_DUMMY_DUMMY',
     emailIntegration: true,
     smtpConfig: {
       host: 'smtp.techocorp.com',
@@ -73,7 +73,7 @@ const mockSystemSettings: SystemSettings = {
       from: 'noreply@techocorp.com'
     },
     apiEnabled: true,
-    apiKey: process.env.REACT_APP_STRIPE_API_KEY || 'sk_test_dummy_key'
+    apiKey: 'sk_test_dummy_dummy_dummy_dummy_12345678'
   },
   privacy: {
     dataRetention: 90,
